@@ -2,6 +2,8 @@
 layout: page
 title: CSS
 permalink: /css/
+banner: banner_css.jpg
+order: 1
 ---
   
 CSS is arguably one of our most used languages at Old Town Media and the performance and technical debt of each site we build is largely dependent on how well it's written. Stylization and organization are very important aspects of this and are heavily discussed here. 

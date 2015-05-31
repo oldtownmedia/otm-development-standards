@@ -3,7 +3,7 @@
   <div class="wrapper">
 
   	<div class="logo">
-	    <a class="site-title" href="{{ site.baseurl }}/"><img itemprop="logo" src="../images/logo.jpg" alt="Old Town Media, Inc."></a>
+	    <a class="site-title" href="{{ site.baseurl }}/"><img itemprop="logo" src="{{ "/images/logo.jpg" | prepend: site.baseurl }}" alt="Old Town Media, Inc."></a>
 	</div>
 
     <nav class="site-nav">
@@ -15,13 +15,15 @@
         </svg>
       </a>
 
+	  {% assign pages = site.pages | sort:"order"  %}
       <div class="trigger">
-        {% for page in site.pages %}
-          {% if page.title %}
-          <a class="page-link" href="{{ page.url | prepend: site.baseurl }}"><span>{{ page.title }}</span></a>
+        {% for p in pages %}
+          {% if p.title %}
+          <a class="page-link" href="{{ p.url | prepend: site.baseurl }}"><span>{{ p.title }}</span></a>
           {% endif %}
         {% endfor %}
       </div>
+
     </nav>
 
   </div>

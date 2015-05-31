@@ -84,7 +84,7 @@
  */
 .site-footer {
     border-top: 1px solid $grey-color-light;
-    padding: $spacing-unit 0;
+    padding: 10px 0;
 }
 
 .footer-heading {
@@ -92,10 +92,16 @@
     margin-bottom: $spacing-unit / 2;
 }
 
-.contact-list,
 .social-media-list {
     list-style: none;
-    margin-left: 0;
+    padding-left: 0;
+    width: 50%;
+    margin:10px 0;
+
+	li span{
+		display: inline-block;
+		margin-right: 7px;
+	}
 }
 
 .footer-col-wrapper {
@@ -111,19 +117,14 @@
     padding-left: $spacing-unit / 2;
 }
 
-.footer-col-1 {
-    width: -webkit-calc(35% - (#{$spacing-unit} / 2));
-    width:         calc(35% - (#{$spacing-unit} / 2));
+.footer-col-left {
+    width: -webkit-calc(50% - (#{$spacing-unit} / 2));
+    width:         calc(50% - (#{$spacing-unit} / 2));
 }
 
-.footer-col-2 {
-    width: -webkit-calc(20% - (#{$spacing-unit} / 2));
-    width:         calc(20% - (#{$spacing-unit} / 2));
-}
-
-.footer-col-3 {
-    width: -webkit-calc(45% - (#{$spacing-unit} / 2));
-    width:         calc(45% - (#{$spacing-unit} / 2));
+.footer-col-right {
+    width: -webkit-calc(50% - (#{$spacing-unit} / 2));
+    width:         calc(50% - (#{$spacing-unit} / 2));
 }
 
 @include media-query($on-laptop) {

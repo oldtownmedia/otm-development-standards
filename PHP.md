@@ -2,6 +2,8 @@
 layout: page
 title: PHP
 permalink: /php/
+banner: banner_php.jpg
+order: 2
 ---
 
 
@@ -9,24 +11,27 @@ permalink: /php/
 
 Always use full PHP syntax, never shorthand. Shorthand PHP can get mixed with other languages such as Underscores which can cause issues. In addition, certain servers will not register shorthand tags correctly.
 
-Avoid:
+**Avoid:**
 
 ```php
+<?php
 <?  ?>
 <?= ?>
 ```
 
-Prefer:
+**Prefer:**
 
 ```php
+<?php
 <?php  ?>
 ```
 
 Always add spaced around variables, operators, commas, etc. This will increase readability and maintainability.Do not put spaces around internal array references.
 
-Avoid:
+**Avoid:**
 
 ```php
+<?php
 function new_function($variable,$variable2){}
 x==23
 foo&&bar
@@ -34,11 +39,13 @@ array(1,2,3)
 $baz.'-5'
 $term.='X'
 $array_item[ 'test' ] = '';
+?>
 ```
 
-Prefer:
+**Prefer:**
 
 ```php
+<?php
 function new_function( $variable, $variable2 ){}
 x == 23
 foo && bar
@@ -46,14 +53,15 @@ array( 1, 2, 3 );
 $baz . '-5'
 $term .= 'X';
 $array_item['test'] = '';
+?>
 ```
 
 Output and loops should be indented appropriately. Indent one tab for each individual level of html or looping hierarchy.
 
-Avoid:
+**Avoid:**
 
 ```php
-
+<?php
 if( !empty( $posts ) ){
 foreach( $posts as $post ){
 echo $stuff
@@ -65,12 +73,13 @@ $html .= "<li>";
 $html .= "<a href='http://google.com'>Google</a>";
 $html .= "</li>";
 $html .= "</ul>";
+?>
 ```
 
-Prefer:
+**Prefer:**
 
 ```php
-
+<?php
 if( !empty( $posts ) ){
 	foreach( $posts as $post ){
 		echo $stuff
@@ -82,30 +91,35 @@ $html .= "<ul>";
 		$html .= "<a href='http://google.com'>Google</a>";
 	$html .= "</li>";
 $html .= "</ul>";
-
+?>
 ```
 
 Always use braces on if statements. This helps isolate issues related to non-wrapped statements running double lines of code. 
 
-Avoid:
+**Avoid:**
 
 ```php
+<?php
 if ( is_true() ) $run_my_code;
+?>
 ```
 
-Prefer:
+**Prefer:**
 
 ```php
+<?php
 if ( is_true() ){
 	$run_my_code;
 }
+?>
 ```
 
 Array values and series of variables should be indented to the equals sign 
 
-Avoid:
+**Avoid:**
 
 ```php
+<?php
 $array = array(
 	'quantity' => 5,
 	'orderby' => 'menu_order',
@@ -115,11 +129,13 @@ $array = array(
 $variable1 = '';
 $variable_of_a_long_name = '';
 $medium = '';
+?>
 ```
 
-Prefer:
+**Prefer:**
 
 ```php
+<?php
 $array = array(
 	'quantity'	=> 5,
 	'orderby'	=> 'menu_order',
@@ -129,20 +145,25 @@ $array = array(
 $variable1			= '';
 $long_name_variable = '';
 $medium				= '';
+?>
 ```
 
 Please use lowercase and underscores for variable names. 
 
-Avoid:
+**Avoid:**
 
 ```php
+<?php
 $CleanTime = '';
+?>
 ```
 
-Prefer:
+**Prefer:**
 
 ```php
+<?php
 $clean_time = '';
+?>
 ```
 
 
@@ -162,6 +183,7 @@ From the WordPress documentation section:
 >@return: Should contain all possible return types, and a description for each. Use a period at the end. Note: @return void should not be used outside of the default bundled themes.
 
 ```php
+<?php
 /**
  * Summary.
  *
@@ -177,41 +199,43 @@ From the WordPress documentation section:
  * @param type $var Optional. Description.
  * @return type Description.
  */
+?>
  ```
  
+### Internationalization
+
+All PHP-served strings should be internationalized using one of WordPress' internationalization functions.
+  
+### OOP & Classes
+```php
+  -- classes 
+  -- _hooks()
+```
+  
+### Functions
+
+Functions should only ever do one thing and one thing well. This makes them repeatable, testable, and easier to maintain over time.
+
+### WordPress
+```php
+  -- WordPress
+    -- Reference 10up standards
+  	-- mu-plugins
+ ```
+
+### Security
+
+Maybe dump<br>
+[8 Best Practices](http://www.sitepoint.com/8-practices-to-secure-your-web-app/)
  
-#  
-# ### Internationalization
-# 
-# All PHP-served strings should be 
-#   
-# ### OOP & Classes
-#   -- classes - _hooks()
-#   
-#   
-# ### Functions
-# 
-# Functions should only ever do one thing and one thing well. This makes them repeatable, testable, and easier to maintain over time.
-# 
-# ### WordPress
-#   -- WordPress
-#     -- Reference 10up standards
-#   	-- mu-plugins
-# 
-# 
-# ### Security
-# 
-# Maybe dump
-# http://www.sitepoint.com/8-practices-to-secure-your-web-app/
-#  
-# ### Testing & Debugging
-#   
-#   	-- debugging
-#   	-- unit testing
-#   	-- acceptance testing
-#   	
-#   	
-# ---
-# http://www.phptherightway.com/
-# https://phpbestpractices.org/
-# http://code.tutsplus.com/tutorials/30-php-best-practices-for-beginners--net-6194
+### Testing & Debugging
+```php
+  	-- debugging
+  	-- unit testing
+  	-- acceptance testing
+ ```
+  	
+## More Reading
+[http://www.phptherightway.com/](http://www.phptherightway.com/)<br>
+[https://phpbestpractices.org/](https://phpbestpractices.org/)<br>
+[30 Best Practices for Beginners](http://code.tutsplus.com/tutorials/30-php-best-practices-for-beginners--net-6194)
