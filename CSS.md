@@ -5,12 +5,12 @@ permalink: /css/
 banner: banner_css.jpg
 order: 1
 ---
-  
-CSS is arguably one of our most used languages at Old Town Media and the performance and technical debt of each site we build is largely dependent on how well it's written. Stylization and organization are very important aspects of this and are heavily discussed here. 
+
+CSS is arguably one of our most used languages at Old Town Media and the performance and technical debt of each site we build is largely dependent on how well it's written. Stylization and organization are very important aspects of this and are heavily discussed here.
 
 ### Syntax
 
-CSS Syntax is important for readability and for future maintainability. We have to be able to read and easily understand each others' code and adhering to these best practices will help both of those. 
+CSS Syntax is important for readability and for future maintainability. We have to be able to read and easily understand each others' code and adhering to these best practices will help both of those.
 
 * Write one selector per line
 * Write one declaration per line
@@ -40,7 +40,7 @@ color: red; background-color: blue; }
 }
 
 .class-4{
-	width: 100%;
+width: 100%;
 }
 ```
 
@@ -140,17 +140,17 @@ section {
 }
 
     .contactinfo{
-	}
+}
 
-		.phone{
-		}
+.phone{
+}
 ```
 
 #### Selector naming & specificity
 
-Selectors should be named descriptively and classes should be used whenever possible. 
+Selectors should be named descriptively and classes should be used whenever possible.
 
-Styles should avoid being over specified. When you over-specify styles it becomes difficult to override them in the future and affects maintainability. [See here](https://css-tricks.com/specifics-on-css-specificity/) for more information on calculating specificity. 
+Styles should avoid being over specified. When you over-specify styles it becomes difficult to override them in the future and affects maintainability. [See here](https://css-tricks.com/specifics-on-css-specificity/) for more information on calculating specificity.
 
 Use classes, avoid IDs unless absolutely necessary, and don't over-qualify selectors by using elements adding-on to your classes.
 
@@ -160,7 +160,7 @@ Use classes, avoid IDs unless absolutely necessary, and don't over-qualify selec
 html body div#pagewrap ul#summer-drinks li.favorite { }
 ```
 
-**Prefer:** 
+**Prefer:**
 
 ```css
 .favorite { }
@@ -191,9 +191,9 @@ Don't use inline styles. Not kidding.
 ### Sass
 
 At Old Town Media we use the sass library to make writing css quicker and more efficient. We use local compilers to put concatenate files and run libraries such as autoprefixer upon compilation. This allows us to keep our stylesheets to one request while organizing the code in an easy-to-read and efficient way.
- 
+
 #### File Oranization
- 
+
 We follow a basic file structure at Old Town Media that makes our projects easier to work on.
 
 ```html
@@ -209,10 +209,6 @@ We follow a basic file structure at Old Town Media that makes our projects easie
  	-- _forms.scss
 ```
 
----
-RYAN - WHAT DO YOU WANT TO DO HERE
----
-
 #### Breaking code into blocks
 
 The main layout file should be organized in a top-down layout - starting with the header and ending with the footer. Other module-based stylesheets should be organized by module type or section. For example organizing a sheet by the custom post type or an eCommerce sheet starting with product listing, then individual product, then cart, etc.
@@ -221,24 +217,59 @@ The main layout file should be organized in a top-down layout - starting with th
 
 Variables should all be defined in the main.scss file and should be named in a way that's recognizable to another developer/designer. All colors and font-families used more than once should be defined as variables to make organization easier.
 
-**Avoid** 
+**Avoid**
 
 ```scss
-	$luscious-nectar: #FFDAB9;
-	$midnight: #191970;
+$luscious-nectar: #FFDAB9;
+$midnight: #191970;
 ```
 
-**Prefer:** 
+**Prefer:**
 
 ```scss
-	$peach: #FFDAB9;
-	$dark-blue: #191970;
+$peach: #FFDAB9;
+$dark-blue: #191970;
 ```
 
 #### Nesting
 
-One of the best features of sass is that you can nest your selectors for easier readability. This is encouraged but should be used conservatively, lest we end up with a Woo nuclear-override selector. If you find yourself nesting more than 3 or 4 levels, re-evaluate the specificity required and your methodology.
+One of the best features of sass is that you can nest your selectors for easier readability. This is encouraged but should be used conservatively, lest we end up with a Woo nuclear-override selector. If you find yourself nesting more than 3 or 4 levels, re-evaluate the specificity required and your methodology. Sometimes, in the interest of modularity it is best to pull out the pieces of a heavily nested file and separate them into files which can be imported.
 
+**Avoid**
+
+```scss
+.project{
+  // Base Project Styles
+  &.project1{
+    .background{
+      // Code..
+    }
+    section,article{
+      // Code..
+    }
+  }
+  &.project2{
+    .background{
+      // Code..
+    }
+    section,article{
+      // Code..
+    }
+  }
+}
+```
+**Prefer**
+```scss
+.project{
+  // Base Project Styles
+  &.project1{
+    @import '/projects/_project1.scss';
+  }
+  &.project2{
+    @import '/projects/_project2.scss';
+  }
+}
+```
 There are times when more specificity is necessary, so use your best judgement.
 
 #### Compiling
@@ -266,7 +297,7 @@ Stylesheets should all be compiled on the local side into one stylesheet. If you
 
 ### Mobile-first Responsive
 
-We build our websites mobile first. Unless a design does not support it we use min-width media queries almost exclusively. Min-width queries allow us to be more flexible in building sites and results in using significantly less code with the same ending result. This also results in much faster mobile sites because the majority of the load is placed on larger screens, which generally have larger processors and faster Internet connections. 
+We build our websites mobile first. Unless a design does not support it we use min-width media queries almost exclusively. Min-width queries allow us to be more flexible in building sites and results in using significantly less code with the same ending result. This also results in much faster mobile sites because the majority of the load is placed on larger screens, which generally have larger processors and faster Internet connections.
 
 
 #### Min-width media queries
@@ -290,6 +321,6 @@ We use an ie8-specific stylesheet trigger with an html IF comment targeting thos
 
 ```css
 <!--[if lt IE 9]>
-	<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/styles/ie8.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/styles/ie8.css" />
 <![endif]-->
 ```
