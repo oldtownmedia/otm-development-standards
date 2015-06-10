@@ -40,7 +40,7 @@ color: red; background-color: blue; }
 }
 
 .class-4{
-width: 100%;
+	width: 100%;
 }
 ```
 
@@ -140,10 +140,10 @@ section {
 }
 
     .contactinfo{
-}
+	}
 
-.phone{
-}
+		.phone{
+		}
 ```
 
 #### Selector naming & specificity
@@ -220,56 +220,60 @@ Variables should all be defined in the main.scss file and should be named in a w
 **Avoid**
 
 ```scss
+
 $luscious-nectar: #FFDAB9;
 $midnight: #191970;
+
 ```
 
 **Prefer:**
 
 ```scss
+
 $peach: #FFDAB9;
 $dark-blue: #191970;
+
 ```
+
+##### Color Scheme declarations
+
+During a projects lifestyle, it can be beneficial to declare all colors associated with the project not only with a descriptive name of the color, but also with a name that pertains to the color's function to the design.
+
+**Example:**
+
+```scss
+
+$peach: #FFDAB9;
+$dark-blue: #191970;
+
+$highlight: $peach;
+$brand: $dark-blue;
+
+```
+
+This enables a waterfall effect of styling, and allows for easy replacement of variables and identifiable use while building the project.
+
+#### Mixins
+
+Mixins should be defined at the head of the main SCSS file, or in a separate SCSS file to be imported at the beginning of main. Mixins should be accompanied with explanatory comments if necessary.
+
+```scss
+
+
+// Round Corners and add Padding
+@mixin button($border-radius: 5px, $padding: 5px 15px){
+  border-radius: $border-radius;
+  padding: $padding;
+}
+
+```
+
+When possible Mixins should be declared with placeholders as an example of the Mixin's functionality. This improves readability.
 
 #### Nesting
 
-One of the best features of sass is that you can nest your selectors for easier readability. This is encouraged but should be used conservatively, lest we end up with a Woo nuclear-override selector. If you find yourself nesting more than 3 or 4 levels, re-evaluate the specificity required and your methodology. Sometimes, in the interest of modularity it is best to pull out the pieces of a heavily nested file and separate them into files which can be imported.
+One of the best features of sass is that you can nest your selectors for easier readability. This is encouraged but should be used conservatively, lest we end up with a Woo nuclear-override selector. If you find yourself nesting more than 3 or 4 levels, re-evaluate the specificity required and your methodology.
 
-**Avoid**
-
-```scss
-.project{
-  // Base Project Styles
-  &.project1{
-    .background{
-      // Code..
-    }
-    section,article{
-      // Code..
-    }
-  }
-  &.project2{
-    .background{
-      // Code..
-    }
-    section,article{
-      // Code..
-    }
-  }
-}
-```
-**Prefer**
-```scss
-.project{
-  // Base Project Styles
-  &.project1{
-    @import '/projects/_project1.scss';
-  }
-  &.project2{
-    @import '/projects/_project2.scss';
-  }
-}
-```
 There are times when more specificity is necessary, so use your best judgement.
 
 #### Compiling
@@ -304,11 +308,27 @@ We build our websites mobile first. Unless a design does not support it we use m
 
 Min-width media queries should be used almost exclusively and should all point in the same direction to avoid confusion. Min-width media queries follow the principle of progressive enhancement which puts the greater burden of styles and paints on desktops and larger devices. It also reduces the mount of code used and makes it easier to modify later.
 
+**Example:**
+
+```scss
+
+p{
+  color: blue;
+}
+
+@media screen and (min-width:800px){
+  p{
+    color: red;
+  }
+}
+
+```
+
+On devices with a viewport smaller than 800px, text color in paragraphs will be blue. Once the 800px viewport exceeds 800px, the color of the text will be red.
+
 #### Breakpoints
 
----
-MORE
----
+Generally, breakpoints should be defined as the content on the page no longer fills the needs of the space provided. For example, a grid system of products will most likely be vertically oriented on a mobile device. Once the viewport becomes larger, there will likely be a moment where it is more suitable to switch the layout to rows rather than columns.
 
 #### Media queries placement
 
@@ -321,6 +341,6 @@ We use an ie8-specific stylesheet trigger with an html IF comment targeting thos
 
 ```css
 <!--[if lt IE 9]>
-<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/styles/ie8.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/styles/ie8.css" />
 <![endif]-->
 ```
