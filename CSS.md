@@ -5,12 +5,12 @@ permalink: /css/
 banner: banner_css.jpg
 order: 1
 ---
-  
-CSS is arguably one of our most used languages at Old Town Media and the performance and technical debt of each site we build is largely dependent on how well it's written. Stylization and organization are very important aspects of this and are heavily discussed here. 
+
+CSS is arguably one of our most used languages at Old Town Media and the performance and technical debt of each site we build is largely dependent on how well it's written. Stylization and organization are very important aspects of this and are heavily discussed here.
 
 ### Syntax
 
-CSS Syntax is important for readability and for future maintainability. We have to be able to read and easily understand each others' code and adhering to these best practices will help both of those. 
+CSS Syntax is important for readability and for future maintainability. We have to be able to read and easily understand each others' code and adhering to these best practices will help both of those.
 
 * Write one selector per line
 * Write one declaration per line
@@ -148,9 +148,9 @@ section {
 
 #### Selector naming & specificity
 
-Selectors should be named descriptively and classes should be used whenever possible. 
+Selectors should be named descriptively and classes should be used whenever possible.
 
-Styles should avoid being over specified. When you over-specify styles it becomes difficult to override them in the future and affects maintainability. [See here](https://css-tricks.com/specifics-on-css-specificity/) for more information on calculating specificity. 
+Styles should avoid being over specified. When you over-specify styles it becomes difficult to override them in the future and affects maintainability. [See here](https://css-tricks.com/specifics-on-css-specificity/) for more information on calculating specificity.
 
 Use classes, avoid IDs unless absolutely necessary, and don't over-qualify selectors by using elements adding-on to your classes.
 
@@ -160,7 +160,7 @@ Use classes, avoid IDs unless absolutely necessary, and don't over-qualify selec
 html body div#pagewrap ul#summer-drinks li.favorite { }
 ```
 
-**Prefer:** 
+**Prefer:**
 
 ```css
 .favorite { }
@@ -191,9 +191,9 @@ Don't use inline styles. Not kidding.
 ### Sass
 
 At Old Town Media we use the sass library to make writing css quicker and more efficient. We use local compilers to put concatenate files and run libraries such as autoprefixer upon compilation. This allows us to keep our stylesheets to one request while organizing the code in an easy-to-read and efficient way.
- 
+
 #### File Oranization
- 
+
 We follow a basic file structure at Old Town Media that makes our projects easier to work on.
 
 ```html
@@ -209,10 +209,6 @@ We follow a basic file structure at Old Town Media that makes our projects easie
  	-- _forms.scss
 ```
 
----
-RYAN - WHAT DO YOU WANT TO DO HERE
----
-
 #### Breaking code into blocks
 
 The main layout file should be organized in a top-down layout - starting with the header and ending with the footer. Other module-based stylesheets should be organized by module type or section. For example organizing a sheet by the custom post type or an eCommerce sheet starting with product listing, then individual product, then cart, etc.
@@ -221,19 +217,58 @@ The main layout file should be organized in a top-down layout - starting with th
 
 Variables should all be defined in the main.scss file and should be named in a way that's recognizable to another developer/designer. All colors and font-families used more than once should be defined as variables to make organization easier.
 
-**Avoid** 
+**Avoid**
 
 ```scss
-	$luscious-nectar: #FFDAB9;
-	$midnight: #191970;
+
+$luscious-nectar: #FFDAB9;
+$midnight: #191970;
+
 ```
 
-**Prefer:** 
+**Prefer:**
 
 ```scss
-	$peach: #FFDAB9;
-	$dark-blue: #191970;
+
+$peach: #FFDAB9;
+$dark-blue: #191970;
+
 ```
+
+##### Color Scheme declarations
+
+During a projects lifestyle, it can be beneficial to declare all colors associated with the project not only with a descriptive name of the color, but also with a name that pertains to the color's function to the design.
+
+**Example:**
+
+```scss
+
+$peach: #FFDAB9;
+$dark-blue: #191970;
+
+$highlight: $peach;
+$brand: $dark-blue;
+
+```
+
+This enables a waterfall effect of styling, and allows for easy replacement of variables and identifiable use while building the project.
+
+#### Mixins
+
+Mixins should be defined at the head of the main SCSS file, or in a separate SCSS file to be imported at the beginning of main. Mixins should be accompanied with explanatory comments if necessary.
+
+```scss
+
+
+// Round Corners and add Padding
+@mixin button($border-radius: 5px, $padding: 5px 15px){
+  border-radius: $border-radius;
+  padding: $padding;
+}
+
+```
+
+When possible Mixins should be declared with placeholders as an example of the Mixin's functionality. This improves readability.
 
 #### Nesting
 
@@ -266,18 +301,34 @@ Stylesheets should all be compiled on the local side into one stylesheet. If you
 
 ### Mobile-first Responsive
 
-We build our websites mobile first. Unless a design does not support it we use min-width media queries almost exclusively. Min-width queries allow us to be more flexible in building sites and results in using significantly less code with the same ending result. This also results in much faster mobile sites because the majority of the load is placed on larger screens, which generally have larger processors and faster Internet connections. 
+We build our websites mobile first. Unless a design does not support it we use min-width media queries almost exclusively. Min-width queries allow us to be more flexible in building sites and results in using significantly less code with the same ending result. This also results in much faster mobile sites because the majority of the load is placed on larger screens, which generally have larger processors and faster Internet connections.
 
 
 #### Min-width media queries
 
 Min-width media queries should be used almost exclusively and should all point in the same direction to avoid confusion. Min-width media queries follow the principle of progressive enhancement which puts the greater burden of styles and paints on desktops and larger devices. It also reduces the mount of code used and makes it easier to modify later.
 
+**Example:**
+
+```scss
+
+p{
+  color: blue;
+}
+
+@media screen and (min-width:800px){
+  p{
+    color: red;
+  }
+}
+
+```
+
+On devices with a viewport smaller than 800px, text color in paragraphs will be blue. Once the 800px viewport exceeds 800px, the color of the text will be red.
+
 #### Breakpoints
 
----
-MORE
----
+Generally, breakpoints should be defined as the content on the page no longer fills the needs of the space provided. For example, a grid system of products will most likely be vertically oriented on a mobile device. Once the viewport becomes larger, there will likely be a moment where it is more suitable to switch the layout to rows rather than columns.
 
 #### Media queries placement
 
