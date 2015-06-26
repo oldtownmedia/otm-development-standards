@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Broswers
+title: Browsers
 permalink: /browsers/
 banner: banner_php.jpg
 order: 4
