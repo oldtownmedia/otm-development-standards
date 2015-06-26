@@ -1,1 +1,0 @@
-# otm-development-standards
