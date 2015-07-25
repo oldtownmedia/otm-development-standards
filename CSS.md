@@ -21,7 +21,7 @@ CSS Syntax is important for readability and for future maintainability. We have 
 
 ```css
 .class-1, .class-2,
-.class-3 {
+.class-3{
 width: 10px; height: 20px;
 color: red; background-color: blue; }
 .class-4{ width:100%; }
@@ -32,7 +32,7 @@ color: red; background-color: blue; }
 ```css
 .class-1,
 .class-2,
-.class-3 {
+.class-3{
 	width: 10px;
 	height: 20px;
 	color: red;
@@ -44,7 +44,6 @@ color: red; background-color: blue; }
 }
 ```
 
-* Include one space before the opening brace
 * Include one space before the value
 * Include one space after each comma-separated values
 
@@ -61,7 +60,7 @@ color: red; background-color: blue; }
 
 ```css
 .class-1,
-.class-2 {
+.class-2{
 	width: 10px;
 	box-shadow: 0 1px 5px #000, 1px 2px 5px #ccc;
 }
@@ -75,7 +74,7 @@ color: red; background-color: blue; }
 **Avoid**
 
 ```css
-section {
+section{
 	background-color: #FFFFFF;
 	font-family: 'Times New Roman', serif;
 	margin: 0px
@@ -85,7 +84,7 @@ section {
 **Prefer:**
 
 ```css
-section {
+section{
 	background-color: #fff;
 	font-family: "Times New Roman", serif;
 	margin: 0;
@@ -98,7 +97,7 @@ section {
 **Avoid**
 
 ```css
-.header-background {
+.header-background{
 	background: blue;
 	margin: 0 0 0 10px;
 	font-family: "Arial Bold";
@@ -111,7 +110,7 @@ section {
 **Prefer:**
 
 ```css
-.header-background {
+.header-background{
 	background-color: blue;
 	margin-left: 10px;
 	font: 400 16px/1 "Arial Bold";
@@ -158,13 +157,13 @@ Use classes, avoid IDs unless absolutely necessary, and don't over-qualify selec
 **Avoid**
 
 ```css
-html body div#pagewrap ul#summer-drinks li.favorite { }
+html body div#pagewrap ul#summer-drinks li.favorite{ }
 ```
 
 **Prefer:**
 
 ```css
-.favorite { }
+.favorite{ }
 ```
 
 #### Commenting
