@@ -14,7 +14,6 @@ Always use full PHP syntax, never shorthand. Shorthand PHP can get mixed with ot
 **Avoid:**
 
 ```php
-<?php
 <?  ?>
 <?= ?>
 ```
@@ -26,7 +25,7 @@ Always use full PHP syntax, never shorthand. Shorthand PHP can get mixed with ot
 <?php  ?>
 ```
 
-Always add spaced around variables, operators, commas, etc. This will increase readability and maintainability.Do not put spaces around internal array references.
+Always add spaces around variables, operators, commas, etc. This will increase readability and maintainability. Do not put spaces around internal array references.
 
 **Avoid:**
 
@@ -64,7 +63,7 @@ Output and loops should be indented appropriately. Indent one tab for each indiv
 <?php
 if( !empty( $posts ) ){
 foreach( $posts as $post ){
-echo $stuff
+echo $post->stuff;
 }
 }
 
@@ -82,7 +81,7 @@ $html .= "</ul>";
 <?php
 if( !empty( $posts ) ){
 	foreach( $posts as $post ){
-		echo $stuff
+		echo $post->stuff
 	}
 }
 
@@ -94,7 +93,7 @@ $html .= "</ul>";
 ?>
 ```
 
-Always use braces on if statements. This helps isolate issues related to non-wrapped statements running double lines of code. 
+Always use braces on `if` statements. This helps isolate issues related to non-wrapped statements running double lines of code. 
 
 **Avoid:**
 
@@ -148,7 +147,7 @@ $medium				= '';
 ?>
 ```
 
-Please use lowercase and underscores for variable names. 
+Use lowercase letters and underscores for variable names. 
 
 **Avoid:**
 
@@ -169,18 +168,18 @@ $clean_time = '';
 
 ### Documentation 
 
-PHP functions should be documented according to [WordPress standards](https://make.wordpress.org/core/handbook/inline-documentation-standards/php-documentation-standards/#1-functions-and-class-methods) minus since and link.
+PHP functions should be documented according to [WordPress standards](https://make.wordpress.org/core/handbook/inline-documentation-standards/php-documentation-standards/#1-functions-and-class-methods) minus `since` and `link`.
 
 From the WordPress documentation section:
 
->Summary: A brief, one sentence explanation of the purpose of the function spanning a maximum of two lines. Use a period at the end.
->Description: A supplement to the summary, providing a more detailed description. Use a period at the end.
->@ignore Used when an element is meant only for internal use and should be skipped from parsing.
->@access: Only use for standalone functions if private. If the function or class method is private, it is intended for internal use only, and there will be no documentation for it in the code reference.
->@see: Reference to a function, method, or class that is heavily-relied on. See the note above about inline @see tags for expected formatting.
->@global: List PHP globals that are used within the function or method, with an optional description of the global. If multiple globals are listed, they should be aligned by type, variable, and description, with each other as a group.
->@param: Note if the parameter is Optional before the description, and include a period at the end. For example: Optional. This value does something. Default empty.
->@return: Should contain all possible return types, and a description for each. Use a period at the end. Note: @return void should not be used outside of the default bundled themes.
+* *Summary:* A brief, one sentence explanation of the purpose of the function spanning a maximum of two lines. Use a period at the end.
+* *Description:* A supplement to the summary, providing a more detailed description. Use a period at the end.
+* *@ignore* Used when an element is meant only for internal use and should be skipped from parsing.
+* *@access:* Only use for standalone functions if private. If the function or class method is private, it is intended for internal use only, and there will be no documentation for it in the code reference.
+* *@see:* Reference to a function, method, or class that is heavily-relied on. See the note above about inline @see tags for expected formatting.
+* *@global:* List PHP globals that are used within the function or method, with an optional description of the global. If multiple globals are listed, they should be aligned by type, variable, and description, with each other as a group.
+* *@param:* Note if the parameter is Optional before the description, and include a period at the end. For example: Optional. This value does something. Default empty.
+* *@return:* Should contain all possible return types, and a description for each. Use a period at the end. Note: @return void should not be used outside of the default bundled themes.
 
 ```php
 <?php
@@ -204,12 +203,38 @@ From the WordPress documentation section:
  
 ### Internationalization
 
-All PHP-served strings should be internationalized using one of WordPress' internationalization functions.
+All PHP-served strings should be internationalized using one of WordPress' internationalization functions. While Fort Collins is a primarily English-speaking region, any code that we write should be prepared to serve internationalized strings in the event that a client wishes to internationalize their site. This also makes our sites better prepared for future needs and adheres to general code standards.
+
+#### Common internationalization functions. [Read more here](https://codex.wordpress.org/I18n_for_WordPress_Developers)
+
+```php
+<?php
+	__()
+	_e()
+	_x()
+	printf()
+?>
+```
+
+When reasonable, blocks of functionality-grouped code should be built using PHP classes. This allows us to effectively namespace our functions better and maintain greater compatibility in older versions of PHP5. If using hooks (most classes will), a `hooks()` function should be used instead of or in addition to a constructor. This allows us to cordon off hooks and fire a specific function in the class without re-registering hooks/filters.
   
 ### OOP & Classes
 ```php
-  -- classes 
-  -- _hooks()
+<?php
+class MyClass{
+	
+	public function hooks(){
+		// Run action & filters here
+	}
+	
+	public function i_can_be_run_without_performance_issues(){
+	}
+	
+	private function _my_private_function(){
+	}
+		
+}
+?>
 ```
   
 ### Functions
@@ -217,23 +242,50 @@ All PHP-served strings should be internationalized using one of WordPress' inter
 Functions should only ever do one thing and one thing well. This makes them repeatable, testable, and easier to maintain over time.
 
 ### WordPress
+
+
+#### Functionality in mu-plugins
+
+Most functionality should be placed in the mu-plugins folder in an organized fashion. Mu-plugins is an odd choice for most WordPress shops but we use it because of the principle of least privileges: it's virtually impossible to delete site-breaking functionality in mu-plugins unless you have ftp access and can fully assess necessary functionality.
+
+**Mu-plugins organization**
+
+```php
+<?php
+/initial install	// Installing WP - assigns menus, installs plugins, etc
+/default modules	// Generally-used file such as clean-admin
+/modules			// functionality organized code - CPTs for example
+otm-framework.php	// Main plugins file - registers sub files
+/resources			// Resources used by the whole plugn - i.e.: CMB2 library
+/test				// PHP Unit Tests
+/widgets			// front-end & admin dashboard widgets
+?>
+
+```
+
 ```php
   -- WordPress
     -- Reference 10up standards
-  	-- mu-plugins
  ```
+
 
 ### Security
 
 Maybe dump<br>
 [8 Best Practices](http://www.sitepoint.com/8-practices-to-secure-your-web-app/)
  
+ 
 ### Testing & Debugging
+
+Where reasonable, PHP Unit test should be exercised - especially on mu-plugins & custom backend functionality. Tests should be stored in the `/tests` folder and should be organized by file/function i.e.: `test-helper-functions.php` should run test on all functions in `/default-modules/helper-functions.php`.
+
 ```php
   	-- debugging
   	-- unit testing
   	-- acceptance testing
  ```
+ 
+ 
   	
 ## More Reading
 [http://www.phptherightway.com/](http://www.phptherightway.com/)<br>
