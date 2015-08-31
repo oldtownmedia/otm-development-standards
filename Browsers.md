@@ -3,7 +3,7 @@ layout: page
 title: Browsers
 permalink: /browsers/
 banner: banner_php.jpg
-order: 4
+order: 5
 ---
 
 This is an overview of our browser support policy. This policy can be overridden on a per-project basis, but as a whole these are the browsers that we explicitly support and develop for.
