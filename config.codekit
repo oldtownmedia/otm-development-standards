@@ -188,61 +188,6 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/_site\/images\/banner_css.jpg": {
-		"fileType": 16384,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 89243,
-		"inputAbbreviatedPath": "\/_site\/images\/banner_css.jpg",
-		"outputAbbreviatedPath": "\/_site\/images\/banner_css.jpg",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/_site\/images\/banner_general.jpg": {
-		"fileType": 16384,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 168885,
-		"inputAbbreviatedPath": "\/_site\/images\/banner_general.jpg",
-		"outputAbbreviatedPath": "\/_site\/images\/banner_general.jpg",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/_site\/images\/banner_home.jpg": {
-		"fileType": 16384,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 527618,
-		"inputAbbreviatedPath": "\/_site\/images\/banner_home.jpg",
-		"outputAbbreviatedPath": "\/_site\/images\/banner_home.jpg",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/_site\/images\/banner_php.jpg": {
-		"fileType": 16384,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 51396,
-		"inputAbbreviatedPath": "\/_site\/images\/banner_php.jpg",
-		"outputAbbreviatedPath": "\/_site\/images\/banner_php.jpg",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/_site\/images\/logo.jpg": {
-		"fileType": 16384,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 7921,
-		"inputAbbreviatedPath": "\/_site\/images\/logo.jpg",
-		"outputAbbreviatedPath": "\/_site\/images\/logo.jpg",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
 	"\/_site\/index.html": {
 		"fileType": 8192,
 		"ignore": 0,

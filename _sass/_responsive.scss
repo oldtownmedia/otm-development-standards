@@ -18,7 +18,8 @@
 				color:$nav-color;
 				position:relative;
 
-				&:before, &:after{
+				&:before,
+				&:after{
 					content:"";
 					visibility:hidden;
 					opacity:0;
@@ -51,7 +52,9 @@
 					left:auto;
 				}
 
-				&:hover, &.current-menu-item, &.current-menu-ancestor{
+				&:hover,
+				&.current-menu-item,
+				&.current-menu-ancestor{
 
 					&:before, &:after{
 						visibility:visible;
@@ -79,6 +82,12 @@
 
 @media screen and (min-width: 900px){
 
-
+	.banner{
+		img{
+			width: 100%;
+			max-width: 100%;
+			left: 0;
+		}
+	}
 
 }

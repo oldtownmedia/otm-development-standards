@@ -108,6 +108,20 @@ pre {
     }
 }
 
+.banner{
+	overflow-x: hidden;
+	max-width: 130%;
+
+	img{
+		display: block;
+		line-height: 0;
+		width: 150%;
+		max-width: 150%;
+		position: relative;
+		left: -25%;
+	}
+}
+
 
 /**
  * Wrapper
