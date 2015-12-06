@@ -20,14 +20,14 @@ After the full site is developed the files & database should be pushed to our de
 
 #### Production changes
 
-In the event of large changes to a production site, the full site should also be pulled to the development server to stage the changes and test for issues. Site should not be pushed back to production until client testing has completed.
+In the event of large changes to a production site, the full site should also be pulled to the development server or local to stage the changes and test for issues. Site should not be pushed back to production until client testing has completed.
 
  
 ### Performance
 
 #### Tools to find performance issues
 
-There are several publicly available tools to help find performance issues or bottlenecks. We use several to identify potential issues - below is a comprehensive list of the best tools to analyze performance.
+There are several publicly available tools to help find performance issues or bottlenecks. We use several to identify potential issues - below is a short list of the best tools to analyze performance.
 
 [Pingdom](http://tools.pingdom.com/fpt/)<br>
 [Webpage Test](http://www.webpagetest.org/)<br>
@@ -42,11 +42,9 @@ No amount of CSS & JS performance will make a dent in a slow-performing site if 
 
 #### Resource counts
 
-Resources should be reduced to as little as possible. JS & CSS should be concatenated, images should be sprited if possible, icons should be converted to SVGs, and images loaded in conditionally with media queries where possible.
+Resources should be reduced to the smallest size possible. JS & CSS should be concatenated (if HTTP1/1), images should be sprited if possible, icons should be converted to SVGs, and images loaded in conditionally with media queries where possible.
 
 
 #### Concatenation
 
-CSS & JS files should be compressed & contacted to serve as few files as possible in production. It's easiest to run this concatenation on the production site so that you can still test without concatenation and identify any potential issues. 
-
-
+CSS & JS files should be compressed & concatenated to serve as few files as possible in production. It's easiest to run this concatenation on immediately before production so that you can still test without concatenation and identify any potential issues. 

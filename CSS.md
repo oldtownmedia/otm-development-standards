@@ -44,8 +44,8 @@ color: red; background-color: blue; }
 }
 ```
 
-* Include one space before the value
-* Include one space after each comma-separated values
+* Include one space before each value
+* Include one space after each comma in separated calls
 
 **Avoid**
 
@@ -53,6 +53,7 @@ color: red; background-color: blue; }
 .class-1,.class-2{
 	width:10px;
 	box-shadow:0 1px 5px #000,1px 2px 5px #ccc;
+	color:rgba(0,0,0,.5);
 }
 ```
 
@@ -63,6 +64,7 @@ color: red; background-color: blue; }
 .class-2{
 	width: 10px;
 	box-shadow: 0 1px 5px #000, 1px 2px 5px #ccc;
+	color: rgba( 0, 0, 0, .5 );
 }
 ```
 
@@ -74,7 +76,7 @@ color: red; background-color: blue; }
 **Avoid**
 
 ```css
-section{
+.class-1{
 	background-color: #FFFFFF;
 	font-family: 'Times New Roman', serif;
 	margin: 0px
@@ -84,7 +86,7 @@ section{
 **Prefer:**
 
 ```css
-section{
+.class-1{
 	background-color: #fff;
 	font-family: "Times New Roman", serif;
 	margin: 0;
@@ -157,13 +159,16 @@ Use classes, avoid IDs unless absolutely necessary, and don't over-qualify selec
 **Avoid**
 
 ```css
-html body div#pagewrap ul#summer-drinks li.favorite{ }
+html body div#pagewrap ul#summer-drinks li.favorite{}
+.staff-listing .staff{}
 ```
 
 **Prefer:**
 
 ```css
-.favorite{ }
+.favorite{}
+.staff-listing{}
+.staff{}
 ```
 
 #### Commenting
@@ -171,11 +176,11 @@ html body div#pagewrap ul#summer-drinks li.favorite{ }
 Comments should be used liberally to describe each individual section of CSS with at least a title describing it. For more complex sections, a small explanation of the code is also encouraged.
 
 ```css
-/**
- * Section title
- *
- * Description of section (if necessary)
- */
+/**********************\
+	 Section title
+	 
+Description of section (if necessary)
+\**********************/
 ```
 
 For single selectors or inline comments, use this syntax:
@@ -186,42 +191,45 @@ For single selectors or inline comments, use this syntax:
 
 #### Inline styles
 
-Don't use inline styles. Not kidding.
+Don't inline styles. Not kidding.
 
 Seriously, don't do it.
 
 ### Sass
 
-At Old Town Media we use the sass library to make writing css quicker and more efficient. We use local compilers to put concatenate/minfy files and run libraries such as autoprefixer upon compilation. This allows us to keep our stylesheets to one request while organizing the code in an easy-to-read and efficient way.
+At Old Town Media we use the sass library to make writing css quicker and more efficient. We use local compilers to concatenate/minfy files and run libraries such as autoprefixer upon compilation. This allows us to keep our stylesheets to one request while organizing the code in an easy-to-read and efficient way.
 
 #### File Oranization
 
 We follow a basic file structure at Old Town Media that makes our projects easier to work on.
 
-```html
+```php
 /styles
  -- main.scss
  -- ie8.scss
+ -- ie9.scss
  -- editor-styles.css
  -- login.css
  /sass
- 	-- _normalize.scss
- 	-- _forms.scss
- 	-- _print.scss
- 	-- _forms.scss
+ 	-- _sanitize.scss	// Normalization/reset 
+ 	-- _wp-base.scss	// WordPress styles & OTM resets
+ 	-- _cpts.scss		// Custom Post Types
+ 	-- _menus.scss		// Navigation Items (main & mobile)
+ 	-- _forms.scss		// Forms
+ 	-- _print.scss		// Print-specific styles
 ```
 
-main.scss compiles all of the sheets in /sass in addition to the styles in the file. General styles reside in the main.scss file, with specialized content going in the /sass folder files along with any additional files. 
+main.scss compiles all of the sheets in `/sass` in addition to the styles in the file. General styles reside in the `main.scss` file, with specialized content going in the `/sass` folder files along with any additional files. 
 
-The other stylesheets in the main /styles folder hold specific uses and cannot be combined into the main.scss file.
+The other stylesheets in the main `/styles` folder hold specific uses and cannot be combined into the `main.scss` file.
 
 #### Breaking code into blocks
 
-The main layout file should be organized in a top-down layout - starting with the header and ending with the footer. Other module-based stylesheets should be organized by module type or section. For example organizing a sheet by the custom post type or an eCommerce sheet starting with product listing, then individual product, then cart, etc.
+The main layout file should be organized in a top-down layout - starting with the header and ending with the footer. Other module-based stylesheets should be organized by module type or section. For example organizing a stylesheet by the custom post type or an eCommerce sheet starting with product listing, then individual product, then cart, etc.
 
 #### Variables
 
-Variables should all be defined in the main.scss file and should be named in a way that's recognizable to another developer/designer. All colors and font-families used more than once should be defined as variables to make organization easier.
+Variables should all be defined in the `main.scss` file and should be named in a way that's recognizable to another developer/designer. All colors and font-families used more than once should be defined as variables to make organization easier.
 
 **Avoid**
 
@@ -272,17 +280,18 @@ Mixins should be defined at the head of the main SCSS file, or in a separate SCS
 
 ```
 
-When possible Mixins should be declared with placeholders as an example of the Mixin's functionality. This improves readability.
+When possible Mixins should be declared with placeholders as an example of the Mixins functionality. This improves readability.
 
 #### Nesting
 
-One of the best features of sass is that you can nest your selectors for easier readability. This is encouraged but should be used conservatively, lest we end up with a Woo-like nuclear-override selector. If you find yourself nesting more than 3 or 4 levels, re-evaluate the specificity required and your methodology.
+One of the best features of sass is that you can nest your selectors for easier readability. This is encouraged but should be used conservatively, lest we end up with a Woo-like nuclear-override selector. If you find yourself nesting more than 2 or 3 levels, re-evaluate the specificity required and your methodology. The items can likely be broken into lighter-specificity selectors.
 
 There are times when more specificity is necessary, so use your best judgement.
 
 #### Compiling
 
 We cover general compilation more on the General page, but in general compiling should be done with a pre-processor on your workstation, triggering an autoprefixer and minifying the outputted css. SCSS files should be concatenated into a single served css file and if the project is of appropriate scope, critical CSS tools should also be used with your compiler.
+
 
 ### Performance
 
@@ -294,11 +303,11 @@ Whenever possible, images should be defined as background images - especially wh
 
 #### Use CSS sprites
 
-CSS sprites are a perfect way to reduce the number of HTTP requests being loaded on a page. Sprites should be used with small, repeatable images and must be referenced in the CS of the page.
+CSS sprites are a perfect way to reduce the number of HTTP requests being loaded on a page. Sprites should be used with small, repeatable images and must be referenced in the CSS of the page.
 
 #### Network Requests
 
-Stylesheets should all be compiled on the local side into one stylesheet. If you find yourself using a third-party library, it should be included using an @import statement in the pre-compiled scss in the appropriate section to be compiled. This keeps css netwrok requests
+Stylesheets should all be compiled on the local side into one stylesheet. If you find yourself using a third-party library, it should be included using an `@import` statement in the pre-compiled scss in the appropriate section to be compiled. This keeps css network requests to a minimum.
 
 #### More general rules
 
@@ -308,7 +317,7 @@ Stylesheets should all be compiled on the local side into one stylesheet. If you
 
 ### Mobile-first Responsive
 
-We build our websites mobile first. Unless a design does not support it we use min-width media queries almost exclusively. Min-width queries allow us to be more flexible in building sites and results in using significantly less code with the same ending result. This also results in much faster mobile sites because the majority of the load is placed on larger screens, which generally have larger processors and faster Internet connections.
+We build our websites mobile first. Unless a design does not support it we use min-width media queries almost exclusively. Min-width queries allow us to be more flexible in building sites and results in using significantly less code with the same result. This also results in much faster mobile sites because the majority of the load is placed on larger screens, which generally have larger processors and faster Internet connections.
 
 
 #### Min-width media queries
@@ -331,13 +340,13 @@ p{
 
 ```
 
-On devices with a viewport smaller than 800px, text color in paragraphs will be blue. Once the 800px viewport exceeds 800px, the color of the text will be red.
+On devices with a viewport smaller than 800px, text color in paragraphs will be blue. Once the viewport exceeds 800px, the color of the text will be red.
 
 #### Breakpoints
 
-Generally, breakpoints should be defined as the content on the page no longer fills the needs of the space provided. For example, a grid system of products will most likely be vertically oriented on a mobile device. Once the viewport becomes larger, there will likely be a moment where it is more suitable to switch the layout to rows rather than columns.
+Use a media query break when it starts to suck.
 
-In other words, use a media query when it starts to suck.
+Generally, breakpoints should be defined as the content on the page no longer fills the needs of the space provided. For example, a grid system of products will most likely be vertically oriented on a mobile device. Once the viewport becomes larger, there will likely be a moment where it is more suitable to switch the layout to rows rather than columns.
 
 #### Media queries placement
 
@@ -365,10 +374,10 @@ Media queries should be inlined with the appropriate selector block. As few quer
 
 ### IE8 and older browser support
 
-We use an ie8-specific stylesheet trigger with an html IF comment targeting those browsers older than IE9. This method allows us much more flexibility and the potential to fix older IE quirks without muddying up our modern browser CSS.
+We use an ie8-specific and ie8-specific (to fix flexbox) stylesheet triggers with an html IF comment targeting those browsers older than IE9. This method allows us much more flexibility and the potential to fix older IE quirks without muddying up our modern browser CSS.
 
 ```css
-<!--[if lt IE 9]>
+<!--[if lte IE 8]>
 	<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/styles/ie8.css" />
 <![endif]-->
 ```

@@ -93,7 +93,7 @@ $html .= "</ul>";
 ?>
 ```
 
-Always use braces on `if` statements. This helps isolate issues related to non-wrapped statements running double lines of code. 
+Always use braces on `if/else` statements. This helps isolate issues related to non-wrapped statements running the wrong line of code.
 
 **Avoid:**
 
@@ -147,7 +147,7 @@ $medium				= '';
 ?>
 ```
 
-Use lowercase letters and underscores for variable names. 
+Use lowercase letters and underscores for variable names instead of camelcase.
 
 **Avoid:**
 
@@ -216,9 +216,10 @@ All PHP-served strings should be internationalized using one of WordPress' inter
 ?>
 ```
 
-When reasonable, blocks of functionality-grouped code should be built using PHP classes. This allows us to effectively namespace our functions better and maintain greater compatibility in older versions of PHP5. If using hooks (most classes will), a `hooks()` function should be used instead of or in addition to a constructor. This allows us to cordon off hooks and fire a specific function in the class without re-registering hooks/filters.
-  
 ### OOP & Classes
+
+When reasonable, blocks of functionality-grouped code should be built using PHP classes. This allows us to effectively namespace our functions better and maintain greater compatibility in older versions of PHP5. If using hooks (most classes will), a `hooks()` function should be used instead of or in addition to a constructor. This allows us to cordon off hooks and fire a specific function in the class without re-registering hooks/filters.
+
 ```php
 <?php
 class MyClass{
@@ -237,57 +238,42 @@ class MyClass{
 ?>
 ```
   
-### Functions
+#### Namespaces
 
-Functions should only ever do one thing and one thing well. This makes them repeatable, testable, and easier to maintain over time.
+Namespaces should be used with mu-plugins or plugin functionality. Our [_evans](https://github.com/oldtownmedia/evans) mu-plugin library already uses the `evans` namespace.
 
-### WordPress
+  
+### Single Responsibility
 
+Functions should only ever do one thing and one thing well. This makes them repeatable, testable, and easier to maintain over time. [Read more](https://en.wikipedia.org/wiki/Single_responsibility_principle).
 
 #### Functionality in mu-plugins
 
-Most functionality should be placed in the mu-plugins folder in an organized fashion. Mu-plugins is an odd choice for most WordPress shops but we use it because of the principle of least privileges: it's virtually impossible to delete site-breaking functionality in mu-plugins unless you have ftp access and can fully assess necessary functionality.
+Most functionality should be placed in the mu-plugins folder in an organized fashion. Mu-plugins is a different choice for most WordPress developers but we use it because of the principle of least privileges: it's virtually impossible to delete site-breaking functionality in mu-plugins unless you have ftp access and can fully assess necessary functionality.
 
-**Mu-plugins organization**
+
+**Current Mu-plugins organization**
 
 ```php
 <?php
-/initial install	// Installing WP - assigns menus, installs plugins, etc
-/default modules	// Generally-used file such as clean-admin
+/admin				// Abstract classes and files used across the board
 /modules			// functionality organized code - CPTs for example
-otm-framework.php	// Main plugins file - registers sub files
-/resources			// Resources used by the whole plugn - i.e.: CMB2 library
-/test				// PHP Unit Tests
+otm-framework.php	// Main plugin file - registers sub files
+/assets				// Resources used by the whole plugn - i.e.: CMB2 library
+/site-setup			// Installing WP - assigns menus, installs plugins, etc
 /widgets			// front-end & admin dashboard widgets
 ?>
 
 ```
 
-```php
-  -- WordPress
-    -- Reference 10up standards
- ```
-
-
-### Security
-
-Maybe dump<br>
-[8 Best Practices](http://www.sitepoint.com/8-practices-to-secure-your-web-app/)
- 
  
 ### Testing & Debugging
 
-Where reasonable, PHP Unit test should be exercised - especially on mu-plugins & custom backend functionality. Tests should be stored in the `/tests` folder and should be organized by file/function i.e.: `test-helper-functions.php` should run test on all functions in `/default-modules/helper-functions.php`.
+Where reasonable, PHP Unit test should be exercised - especially on mu-plugins & custom backend functionality. Tests should be stored in the `/tests` folder and should be organized by file/function i.e.: `test-helper-functions.php` should run test on all functions in `/admin/helper-functions.php`.
 
-```php
-  	-- debugging
-  	-- unit testing
-  	-- acceptance testing
- ```
- 
- 
   	
 ## More Reading
 [http://www.phptherightway.com/](http://www.phptherightway.com/)<br>
 [https://phpbestpractices.org/](https://phpbestpractices.org/)<br>
 [30 Best Practices for Beginners](http://code.tutsplus.com/tutorials/30-php-best-practices-for-beginners--net-6194)
+[8 Security Best Practices](http://www.sitepoint.com/8-practices-to-secure-your-web-app/)
