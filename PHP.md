@@ -113,7 +113,7 @@ if ( is_true() ){
 ?>
 ```
 
-Array values and series of variables should be indented to the equals sign 
+Array values and series of variables should be indented to the equals sign.
 
 **Avoid:**
 
@@ -147,7 +147,7 @@ $medium				= '';
 ?>
 ```
 
-Use lowercase letters and underscores for variable names instead of camelcase.
+Use lowercase letters and underscores for variable names instead of CamelCase.
 
 **Avoid:**
 
@@ -218,7 +218,7 @@ All PHP-served strings should be internationalized using one of WordPress' inter
 
 ### OOP & Classes
 
-When reasonable, blocks of functionality-grouped code should be built using PHP classes. This allows us to effectively namespace our functions better and maintain greater compatibility in older versions of PHP5. If using hooks (most classes will), a `hooks()` function should be used instead of or in addition to a constructor. This allows us to cordon off hooks and fire a specific function in the class without re-registering hooks/filters.
+When reasonable, blocks of functionality-grouped code should be built using PHP classes. This allows us to effectively namespace our functions better and maintain greater compatibility in older versions of PHP5. If using hooks (most classes built for WP will), a `hooks()` function should be used instead of or in addition to a constructor. This allows us to cordon off hooks and fire a specific function in the class without re-registering hooks/filters.
 
 ```php
 <?php
@@ -273,6 +273,7 @@ Where reasonable, PHP Unit test should be exercised - especially on mu-plugins &
 
   	
 ## More Reading
+
 [http://www.phptherightway.com/](http://www.phptherightway.com/)<br>
 [https://phpbestpractices.org/](https://phpbestpractices.org/)<br>
 [30 Best Practices for Beginners](http://code.tutsplus.com/tutorials/30-php-best-practices-for-beginners--net-6194)

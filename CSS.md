@@ -197,9 +197,9 @@ Seriously, don't do it.
 
 ### Sass
 
-At Old Town Media we use the sass library to make writing css quicker and more efficient. We use local compilers to concatenate/minfy files and run libraries such as autoprefixer upon compilation. This allows us to keep our stylesheets to one request while organizing the code in an easy-to-read and efficient way.
+At Old Town Media we use the sass library to make writing css quicker and more efficient. We use local compilers to concatenate/minify files and run libraries such as auto-prefixer upon compilation. This allows us to keep our stylesheets to one request while organizing the code in an easy-to-read and efficient way.
 
-#### File Oranization
+#### File Organization
 
 We follow a basic file structure at Old Town Media that makes our projects easier to work on.
 
@@ -219,7 +219,7 @@ We follow a basic file structure at Old Town Media that makes our projects easie
  	-- _print.scss		// Print-specific styles
 ```
 
-main.scss compiles all of the sheets in `/sass` in addition to the styles in the file. General styles reside in the `main.scss` file, with specialized content going in the `/sass` folder files along with any additional files. 
+Main.scss compiles all of the sheets in `/sass` in addition to the styles in the file. General styles reside in the `main.scss` file, with specialized content going in the `/sass` folder files along with any additional files. 
 
 The other stylesheets in the main `/styles` folder hold specific uses and cannot be combined into the `main.scss` file.
 
@@ -280,7 +280,7 @@ Mixins should be defined at the head of the main SCSS file, or in a separate SCS
 
 ```
 
-When possible Mixins should be declared with placeholders as an example of the Mixins functionality. This improves readability.
+When possible mixins should be declared with placeholders as an example of the mixins functionality. This improves readability.
 
 #### Nesting
 
@@ -290,7 +290,7 @@ There are times when more specificity is necessary, so use your best judgement.
 
 #### Compiling
 
-We cover general compilation more on the General page, but in general compiling should be done with a pre-processor on your workstation, triggering an autoprefixer and minifying the outputted css. SCSS files should be concatenated into a single served css file and if the project is of appropriate scope, critical CSS tools should also be used with your compiler.
+We cover general compilation more on the General page, but in general compiling should be done with a pre-processor on your workstation, triggering an auto-prefixer and minifying the outputted css. SCSS files should be concatenated into a single served css file and if the project is of appropriate scope, critical CSS tools should also be used with your compiler.
 
 
 ### Performance
