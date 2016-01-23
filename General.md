@@ -22,6 +22,39 @@ After the full site is developed the files & database should be pushed to our de
 
 In the event of large changes to a production site, the full site should also be pulled to the development server or local to stage the changes and test for issues. Site should not be pushed back to production until client testing has completed.
 
+
+### WordPress File Organization
+
+Most of our functionality falls into either mu-plugins and themes. There is a distinct and important separation of functionality between the two. Essentially, themes should be completely interchangeable with each other and standalone from backend functionality on the site. You should be able to swap out themes with one another without losing custom post types, admin modifications, etc.
+
+Here are the main reasons why we hold to this separation:
+
+1. Makes themes entirely interchangeable - we or a client can change the theme out without losing any data of functionality.
+2. Speeds up development time with separate concerns - keeps front-end in the theme and back-end in plugin.
+3. Re-theming sites or existing clients is significantly easier
+4. Allows us to organize plugin functionality into swappable chunks and trade them between projects with no consequences.
+
+
+### Testing
+
+Testing is split into several different types for organization.
+
+#### Content
+
+Content testing is one of the most important parts of our workflow. In [evans](https://github.com/oldtownmedia/evans) we have a test content suite that allows you to spin up a lot of test content and test a site with disparate content types and length. Spin up several pages of each cpt of content and visually test the consequences on the front-end.
+
+#### Device
+
+All sites should be tested on multiple real devices to ensure maximum compatibility. Use several real devices to actually test every page on the site you're building. Laptops, tablets, and phones of multiple OS' should be used.
+
+#### Browser
+
+Similar to testing on multiple devices, multiple browsers in each OS should be used. See Browsers for support & testing requirements. 
+
+#### Automated
+
+We use [scutinizer](https://scrutinizer-ci.com/githube) to evaluate all new site code & run unit tests. Scrutinizer points out several issues with code that the human eye has a hard time seeing such as duplicate code blocks, missing references, etc.
+
  
 ### Performance
 

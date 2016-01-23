@@ -240,8 +240,22 @@ class MyClass{
   
 #### Namespaces
 
-Namespaces should be used with mu-plugins or plugin functionality. Our [_evans](https://github.com/oldtownmedia/evans) mu-plugin library already uses the `evans` namespace.
+Namespaces should be used with any non-template PHP files. Our [_evans](https://github.com/oldtownmedia/evans) mu-plugin library already uses the `evans` namespace. In general one namespace is acceptable, however if multiple namespace depths are used the following might be used: `{plugin}\{client}\{functionality}`.
 
+Namespaces should be placed at the top of PHP files where they are used.
+
+**Example:**
+```php
+<?php
+namespace evans\BlackBottle\cpt;
+
+Class CPT{
+	public function hooks(){
+		
+	}
+}
+?>
+```
   
 ### Single Responsibility
 
