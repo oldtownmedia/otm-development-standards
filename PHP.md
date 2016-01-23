@@ -245,6 +245,7 @@ Namespaces should be used with any non-template PHP files. Our [_evans](https://
 Namespaces should be placed at the top of PHP files where they are used.
 
 **Example:**
+
 ```php
 <?php
 namespace evans\BlackBottle\cpt;

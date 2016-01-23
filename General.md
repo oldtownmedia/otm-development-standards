@@ -22,6 +22,18 @@ After the full site is developed the files & database should be pushed to our de
 
 In the event of large changes to a production site, the full site should also be pulled to the development server or local to stage the changes and test for issues. Site should not be pushed back to production until client testing has completed.
 
+### CVS
+
+At Old Town Media, we use Git as our versioning of choice. Client files are hosted on BitBucket and open-source repos such as this one are hosted on Github. 
+
+#### Commits
+
+Commits should be granular and limited to one feature at most. All commits must have a commit message tied to them that describes the modification or addition. 
+
+#### Branches
+
+Branches are most often used to delineate differing generations of sites or major feature releases. The master branch should be the current live version of the site, with new/old/feature branches labeled appropriately.
+
 
 ### WordPress File Organization
 
@@ -34,10 +46,11 @@ Here are the main reasons why we hold to this separation:
 3. Re-theming sites or existing clients is significantly easier
 4. Allows us to organize plugin functionality into swappable chunks and trade them between projects with no consequences.
 
+[Read more here](http://code.tutsplus.com/tutorials/the-concept-of-plugin-territory-in-wordpress--cms-25083)
 
 ### Testing
 
-Testing is split into several different types for organization.
+Testing is one of the most important and necessary tasks in the development lifecycle. Bugs cost money to fix and catching them before anything is pushed to production is key. 
 
 #### Content
 
@@ -53,7 +66,7 @@ Similar to testing on multiple devices, multiple browsers in each OS should be u
 
 #### Automated
 
-We use [scutinizer](https://scrutinizer-ci.com/githube) to evaluate all new site code & run unit tests. Scrutinizer points out several issues with code that the human eye has a hard time seeing such as duplicate code blocks, missing references, etc.
+We use [scutinizer](https://scrutinizer-ci.com/) to evaluate all new site code & run unit tests. Scrutinizer points out several issues with code that the human eye has a hard time seeing such as duplicate code blocks, missing references, etc.
 
  
 ### Performance
